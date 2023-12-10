@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+<h1>Kunde</h1>
+<p>Skriv inn Oppgaven : <label for="oppgave"></label>   <input type="text" id="oppgave"> </p>
+<p>Skriv inn Oppgave Beskrivelsen : <label for="beskrivelse"></label>   <input type="text" id="beskrivelse"> </p>
+
+<button onclick="hentData()"> Trykk her </button>
+
+<p>Oppgave : <span id="utOppgave"></span></p>
+<p>Beskrivelse : <span id="utBeskrivelse"></span></p>
+
+<script type="application/javascript">
+
+    function hentData() {
+        const oppgave = {
+            oppgave : $("#oppgave").val(),
+            beskrivelse : $("#beskrivelse").val()
+
+        };
+        $.post("/lagre", oppgave, function (data) {
+            $("#utOppgave").html(data.oppgave);
+            $("#utBeskrivelse").html(data.beskrivelse);
+        })
+    }
+
+</script>
+
+</body>
+</html>

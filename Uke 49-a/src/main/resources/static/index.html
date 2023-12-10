@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Produktadministrasjon</title>
+</head>
+<body>
+
+<h2>Legg til produkt</h2>
+
+    <p>Skriv inn produktet : <label for="navn"></label> <input type="text" id="navn"> </p>
+    <p>Skriv inn prisen : <label for="pris"></label>   <input type="text" id="pris"> </p>
+
+<button onclick="hentData()"> Trykk her </button>
+
+<p>Produkt : <span id="utNavn"></span></p>
+<p>Pris : <span id="utPris"></span></p>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="application/javascript">
+
+    function hentData() {
+        const produkt = {
+            navn : $("#navn").val(),
+            pris : $("#pris").val()
+
+        };
+        $.post("/lagre", produkt, function (data) {
+            $("#utNavn").html(data.navn);
+            $("#utPris").html(data.pris);
+        })
+    }
+
+</script>
+
+</body>
+</html>
